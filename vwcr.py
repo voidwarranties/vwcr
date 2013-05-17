@@ -5,6 +5,7 @@ pygtk.require("2.0")
 import gtk
 import threading
 import requests
+from config import config
 
 class Drink():
     """ Definition of a consumption, usually but not always a drink """
@@ -241,9 +242,9 @@ class VWCR():
 #########
 if __name__ == "__main__":
     gtk.gdk.threads_init()
-    serveradress = "http://0.0.0.0:5000/"
-    api_user = "API"
-    api_password = "password" 
+    serveradress = config['serveradress']
+    api_user = config['api_user']
+    api_password = config['api_password']
     MainWindow = VWCR()
     gtk.gdk.threads_enter()
     MainWindow.main()
