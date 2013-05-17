@@ -21,7 +21,7 @@ class Drink():
 # API HOOKS #
 #############
 def GetStockList():
-    response = requests.get(serveradress + 'api/stock', auth=(api_user, api_password))
+    response = requests.get(serveradress + 'api/stock', auth=(api_user, api_password), verify=False)
     stock = response.json()
     StockList = [ Drink(
             id = int(stockitem['id']),
@@ -32,20 +32,20 @@ def GetStockList():
     return StockList
 
 def GetUserList():
-    response = requests.get(serveradress + 'api/user', auth=(api_user, api_password)) 
+    response = requests.get(serveradress + 'api/user', auth=(api_user, api_password), verify=False)
     return response.json()
     
 def Authenticate(user_id, password):
     url = serveradress + 'api/user/' + str(user_id)
     values = {'password': password}
-    request = requests.get(url, params=values, auth=(api_user, api_password)) 
+    request = requests.get(url, params=values, auth=(api_user, api_password), verify=False)
     return request.text
     
 def RegisterPurchase(item, user_id=None):
     values = {'item_id' : item.id }
     if user_id:
         values['user_id'] = user_id
-    req = requests.post(serveradress + 'api/purchase', data=values, auth=(api_user, api_password))
+    req = requests.post(serveradress + 'api/purchase', data=values, auth=(api_user, api_password), verify=False)
     
 ###############
 # WINDOW CLASSES #
