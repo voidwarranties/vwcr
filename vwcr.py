@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=UTF8
 
 import pygtk
 pygtk.require("2.0")
@@ -211,7 +212,19 @@ class VWCR():
                     templist.append(blankdrink)
                 j = j + 1
             for item in templist:
-                self.drinkbutton = gtk.Button(item.name)
+                # we can't center multiline button labels, so we'll include spacers on both lines and set the font to monospace
+                self.drinkbutton = gtk.Button("")
+                if item.name:
+                    if len(item.name) < 6:
+                        namespacer = ((6 - len(item.name)) / 2 ) * ' '
+                        pricespacer = ''
+                    else:
+                        namespacer = ''
+                        pricespacer = (len(item.name) / 2 - 3) * ' '
+                    label = namespacer + item.name + '\n' + pricespacer + '€ %.2f' % item.price
+                else:
+                    label = ""
+                self.drinkbutton.child.set_markup('<span face="monospace">' + label + '</span>')
                 colormap = self.drinkbutton.get_colormap()
                 color = colormap.alloc_color("grey")
                 if item.type == "alcoholic drink":
