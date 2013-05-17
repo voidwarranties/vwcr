@@ -23,6 +23,8 @@ class Drink():
 def GetStockList():
     response = requests.get(serveradress + 'api/stock', auth=(api_user, api_password), verify=False)
     stock = response.json()
+    # the next line sorts the stocklist by category first, name second
+    stock = sorted(stock, key=lambda field: "%s %s" % (field['category'], field['name']))
     StockList = [ Drink(
             id = int(stockitem['id']),
             name = stockitem['name'],
