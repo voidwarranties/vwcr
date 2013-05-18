@@ -124,9 +124,9 @@ class VWCR():
         self.treeselection = self.BuyerView.get_selection()
         self.treeselection.set_mode(gtk.SELECTION_SINGLE)
         (model, iter) = self.treeselection.get_selected()
-        FirstName = model.get_value(iter, 0)
-        LastName = model.get_value(iter, 1)
-        user = [FirstName,  LastName]
+        id = model.get_value(iter, 0)
+        name = model.get_value(iter, 1)
+        user = [id,  name]
         self.SelectedUser = user
 
     def __init__(self):
@@ -142,7 +142,7 @@ class VWCR():
             self.BuyerRawList.append([user["id"], user["name"]])
         self.BuyerView = gtk.TreeView(self.BuyerRawList)
         selectedrow = self.BuyerView.get_selection()
-        selectedrow.connect('changed',  self.ClickBuyerRow)
+        selectedrow.connect('changed', self.ClickBuyerRow)
         cell = gtk.CellRendererText()
         col = gtk.TreeViewColumn("id",  cell,  text=0)
         self.BuyerView.append_column(col)
