@@ -21,8 +21,12 @@ class Drink():
 #############
 # API HOOKS #
 #############
+def request(method, uri, data=None, params=None):
+    function = getattr(requests, method)
+    return function(config['serveradress'] + uri, auth=(config['api_user'], config['api_password']), verify=False, data=data, params=params)
+
 def GetStockList():
-    response = requests.get(serveradress + 'api/stock', auth=(api_user, api_password), verify=False)
+    response = request('get', 'api/stock')
     stock = response.json()
     # the next line sorts the stocklist by category first, name second
     stock = sorted(stock, key=lambda field: "%s %s" % (field['category'], field['name']))
@@ -35,20 +39,20 @@ def GetStockList():
     return StockList
 
 def GetUserList():
-    response = requests.get(serveradress + 'api/user', auth=(api_user, api_password), verify=False)
+    response = request('get', 'api/user')
     return response.json()
     
 def Authenticate(user_id, password):
-    url = serveradress + 'api/user/' + str(user_id)
+    url = 'api/user/' + str(user_id)
     values = {'password': password}
-    request = requests.get(url, params=values, auth=(api_user, api_password), verify=False)
-    return request.text
+    response= request('get', url, params=values)
+    return response.text
     
 def RegisterPurchase(item, user_id=None):
     values = {'item_id' : item.id }
     if user_id:
         values['user_id'] = user_id
-    req = requests.post(serveradress + 'api/purchase', data=values, auth=(api_user, api_password), verify=False)
+    response = request('post', 'api/purchase', data=values)
     
 ###############
 # WINDOW CLASSES #
@@ -257,9 +261,6 @@ class VWCR():
 #########
 if __name__ == "__main__":
     gtk.gdk.threads_init()
-    serveradress = config['serveradress']
-    api_user = config['api_user']
-    api_password = config['api_password']
     MainWindow = VWCR()
     gtk.gdk.threads_enter()
     MainWindow.main()
