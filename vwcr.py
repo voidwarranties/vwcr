@@ -226,13 +226,13 @@ class VWCR():
                     label = ""
                 self.drinkbutton.child.set_markup('<span face="monospace">' + label + '</span>')
                 colormap = self.drinkbutton.get_colormap()
-                color = colormap.alloc_color("orange")
+                color = colormap.alloc_color("#F2F2A7")
                 if item.type == "alcoholic drink":
-                    color = colormap.alloc_color("cyan")
+                    color = colormap.alloc_color("#1BE0D6")
                 elif item.type == "non-alcoholic drink":
-                    color = colormap.alloc_color("blue")
+                    color = colormap.alloc_color("#76F59E")
                 elif item.type == "food":
-                    color = colormap.alloc_color("lime")
+                    color = colormap.alloc_color("#F2F2A7")
                 style = self.drinkbutton.get_style().copy()
                 style.bg[gtk.STATE_NORMAL] = color
                 self.drinkbutton.set_style(style)
