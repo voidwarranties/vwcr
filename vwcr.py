@@ -23,7 +23,7 @@ class Drink():
 #############
 def request(method, uri, data=None, params=None):
     function = getattr(requests, method)
-    return function(config['serveradress'] + uri, auth=(config['api_user'], config['api_password']), verify='cert.pem', data=data, params=params)
+    return function(config['serveradress'] + uri, auth=(config['api_user'], config['api_password']), verify=config['certificate'], data=data, params=params)
 
 def GetStockList():
     response = request('get', 'api/stock')
