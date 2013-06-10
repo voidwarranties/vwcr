@@ -12,9 +12,9 @@ import datetime
 #global vars
 
 <<<<<<< HEAD
-def __init__():
+#def __init__():
 
-  ser = serial.Serial("com11",9600)
+ # ser = serial.Serial("com11",9600)
 =======
 ser = serial.Serial("com11",9600) # windows
 #ser = serial.Serial("/dev/ttyACM0" ,9600)# linux
