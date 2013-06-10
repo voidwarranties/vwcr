@@ -6,7 +6,8 @@ pygtk.require("2.0")
 import gtk
 import threading
 import requests
-from config import config
+import config
+import nixies
 
 class Drink():
     """ Definition of a consumption, usually but not always a drink """
@@ -107,6 +108,7 @@ class VWCR():
         self.CurrentDrink = Item
         self.MainWindow.hide()
         confirmtitle = Item.name + " ---------- " + str(Item.price) + " Euro"
+        nixies.price(Item.price)
         self.ConfirmWindow.set_title(confirmtitle)
         self.ConfirmWindow.show_all()
 
