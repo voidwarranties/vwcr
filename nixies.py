@@ -1,15 +1,24 @@
 #!/usr/bin/env python
 # coding=UTF8
+<<<<<<< HEAD
 # v 0.2
+=======
+# v 0.3
+>>>>>>> added the wrong file first now the good one
 
 import serial
 import datetime
 
 #global vars
 
+<<<<<<< HEAD
 def __init__():
 
   ser = serial.Serial("com11",9600)
+=======
+ser = serial.Serial("com11",9600) # windows
+#ser = serial.Serial("/dev/ttyACM0" ,9600)# linux
+>>>>>>> added the wrong file first now the good one
 
 def price(getal1,getal2,getal3,getal4): # use this to print numbers directly (0-9 only) everything else will give a blank
   ser.write("P")
