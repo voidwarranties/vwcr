@@ -1,26 +1,29 @@
 #!/usr/bin/env python
 # coding=UTF8
-
-# v 0.2
-=======
-# v 0.3
+# v 0.8
 
 
 import serial
 import datetime
+import math
 
 #global vars
 
 
-#def __init__(self):
-
- # ser = serial.Serial("com11",9600)
-=======
-ser = serial.Serial("com11",9600) # windows
+ser = serial.Serial("com11",9600)# windows
 #ser = serial.Serial("/dev/ttyACM0" ,9600)# linux
 
 
-def price(getal1,getal2,getal3,getal4): # use this to print numbers directly (0-9 only) everything else will give a blank
+def price(price): # use this to directly print the price float
+  fullnumbers = str(price).split(".") # splitting the float: open for improvment !! this version ping-pongd the date between int and string
+  if int(fullnumbers[1])/10 == 0:
+    prezero = 10 - int(fullnumbers[1])
+    fullnumbers[1] = int(fullnumbers[1]) + prezero
+  print fullnumbers[1]  
+  numbers(int(fullnumbers[0])/10,int(fullnumbers[0])%10,int(fullnumbers[1])/10,int(fullnumbers[1])%10)
+  
+  
+def numbers(getal1,getal2,getal3,getal4): # use this to print numbers directly (0-9 only) everything else will give a blank
   ser.write("P")
   ser.write(getal1)
   ser.write(getal2)
