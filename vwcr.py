@@ -102,6 +102,7 @@ class VWCR():
         if Answer == "cash":
             self.CurrentDrink.user = "Cash"
             RegisterPurchase(self.CurrentDrink)
+            nixies.opendraw()
             self.MainWindow.show()
         
     def SellDrink(self, widget, Item):
