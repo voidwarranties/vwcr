@@ -6,7 +6,7 @@ import serial
 from time import strftime, localtime
 import math
 
-#global vars
+#global vars cha,ge the coresponding line based on the syetem your using
 
 ser = serial.Serial("com11",9600)# windows
 #ser = serial.Serial("/dev/ttyACM0" ,9600)# linux
