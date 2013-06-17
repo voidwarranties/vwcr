@@ -2,22 +2,18 @@
 # coding=UTF8
 # v 0.8
 
-
 import serial
-import datetime
+from time import strftime, localtime
 import math
 
 #global vars
 
-
 ser = serial.Serial("com11",9600)# windows
 #ser = serial.Serial("/dev/ttyACM0" ,9600)# linux
-
 
 def price(getal): # use this to print numbers
   getal2 = str(format(getal, "05.2f")).replace(".","")
   ser.write("P" + getal2 + "\n")
-
 
 def time (hour,minu,sec): #use this to set the clock directly
 
@@ -41,15 +37,6 @@ def opendraw(): #open the drawer
   ser.write("O")
 
 def settime():# set the time based on the system time
-
-  now = datetime.datetime.now()
-  ser.write("T")
-  ser.write(int(now.hour)/10)
-  ser.write(int(now.hour)%10)
-  ser.write(int(now.minute)/10)
-  ser.write(int(now.minute)%10)
-  ser.write(int(now.second)/10)
-  ser.write(int(now.second)%10)
-  ser.write("\n")
+  ser.write("T" + strftime("%H%M%S", localtime()) + "\n")
 
   
