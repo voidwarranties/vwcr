@@ -26,6 +26,14 @@ def time (hour,minu,sec): #use this to set the clock directly
   ser.write(sec%10)
   ser.write("\n")
 
+def numbers(getal1,getal2,getal3,getal4): # use this to print numbers directly (0-9 only) everything else will give a blank
+  ser.write("P")
+  ser.write(getal1)
+  ser.write(getal2)
+  ser.write(getal3)
+  ser.write(getal4)
+  ser.write("\n")
+
 def state(): # get the drawerstate should be fine but might give randomness. The reseult should be either 1 or 0, aka a boolean. Might include a for loop to filter randomness.
 
   ser.write("S")
